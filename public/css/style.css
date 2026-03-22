@@ -1,0 +1,108 @@
+body {
+  font-family: "Plus Jakarta Sans", sans-serif !important;
+}
+.navbar {
+  height: 5rem;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.fa-compass {
+  color: #fe424d;
+  font-size: 2rem;
+}
+.nav-link {
+  color: #222222 !important;
+}
+
+footer {
+  border-top: 1px solid #ddd;
+  background-color: #8e9091;
+  padding: 2rem 0;
+}
+
+.f-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.f-info-links a {
+  text-decoration: none;
+  color: #222;
+  margin: 0 0.5rem;
+}
+
+.f-info-links a:hover {
+  text-decoration: underline;
+}
+
+.fa-brands {
+  font-size: 1.3rem;
+  margin: 0 0.5rem;
+  transition: 0.3s ease;
+}
+
+.fa-brands:hover {
+  color: #0d6efd;
+  cursor: pointer;
+}
+
+/* Cards */
+
+.listing-card {
+  border: none !important;
+  margin-bottom: 2rem;
+}
+.card-img-top {
+  border-radius: 1rem !important;
+  width: 100% !important;
+  object-fit: cover !important;
+}
+.card-body {
+  padding: 0;
+}
+
+.card-text p {
+  font-size: 1rem;
+}
+
+.listing-link {
+  text-decoration: none;
+  color: black;
+}
+.listing-link:hover {
+  /* text-decoration: none; */
+  color: black;
+}
+
+/* card effect */
+.card-img-overlay {
+  opacity: 0;
+}
+.card-img-overlay:hover {
+  opacity: 0;
+}
+
+.form-control {
+  border-radius: 10px !important;
+}
+.listing-addBtn:hover {
+  background-color: rgb(0, 0, 0) !important;
+}
+
+/* show page */
+.show-img {
+  height: 30vh;
+}
+
+/* reviews */
+.submit_Review{
+  border: none;
+  margin-bottom: 10px;
+}
+.submit_Review:hover{
+  background-color: rgb(9, 96, 235) !important;
+}

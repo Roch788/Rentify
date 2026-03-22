@@ -1,0 +1,73 @@
+
+<style>
+    .btn-search{
+        background-color: #fe424d;
+        color: white;
+        border-radius: 25px;
+        padding: 0 1rem 0 1rem;
+    }
+    .btn-search:hover{
+        background-color: #fe424d;
+        color: white; 
+    }
+    .btn-search i{
+        display: inline;
+        margin-right: 0.5rem;
+    }
+    .search-input{
+        border-radius: 25px !important; 
+        padding: 0.5rem 3rem 0.5rem 3rem !important;
+        font-size: medium !important;
+    }
+</style>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light border-bottom sticky-top">
+    <div class="container-fluid">
+
+        <a class="navbar-brand" href="/listings">
+            <i class="fa-regular fa-compass"></i>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- SINGLE collapse -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+            <!-- Left Side -->
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/listings">Explore</a>
+                </li>
+            </ul>
+
+            <div class="navbar-nav me-auto">
+                <form class="d-flex">
+                    <input class="search-input form-control me-2 " name="hello" type="search" placeholder="Search Destinations" aria-label="Search">
+                    <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+                </form>
+
+            </div>
+
+
+            <!-- Right Side -->
+            <a class="nav-link" href="/listings/new">Add New Listing</a>
+            <% if(!currUser){ %>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signup"><b>Sign up</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login"><b>Log in</b></a>
+                    </li>
+                    <%} %>
+                        <% if(currUser){ %>
+                            <a class="nav-link" href="/logout"><b>Log out</b></a>
+                </ul>
+                <%} %>
+
+        </div>
+    </div>
+</nav>

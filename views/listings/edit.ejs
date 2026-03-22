@@ -1,0 +1,52 @@
+<%-layout("layouts/boilerPlate") %>
+
+
+    <body>
+        <br>
+        <div class="row">
+           <div class="col-8 offset-2">
+             <h3>Edit Listing</h3>
+            <form method="post" action="/listings/<%=listing._id%>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
+                <div class="mb-2">
+                    <label for="title" class="form-label">Title</label>
+                    <input name="listing[title]" value="<%=listing.title%>" type="text" class="form-control" required>
+                </div>
+                <br>
+                <div class="mb-2">
+                    <label for="title" class="form-label">Description</label>
+                    <textarea name="listing[description]" type="text"
+                        class="form-control"><%=listing.description%></textarea>
+                </div>
+                <br>
+                <div class="mb-3">
+                    Original Listing Image
+                    <div><img src="<%=originalImageUrl%>" alt=""></div>
+                </div>
+                <div class="mb-2">
+                    <label for="title" class="form-label">Upload New Image </label>
+                    <input name="listing[image]" type="file" class="form-control" >
+                </div>
+                <br>
+               <div class="row">
+                 <div class="mb-2 col-3">
+                    <label for="title" class="form-label">Price</label>
+                    <input name="listing[price]" value="<%=listing.price%>" type="number" class="form-control" required>
+                </div>
+                <br>                
+                <div class="mb-2 col-9">
+                    <label for="title" class="form-label">Location</label>
+                    <input name="listing[location]" value="<%=listing.location%>" type="text" class="form-control" required>
+                </div>
+               </div>
+                <br>
+                <div class="mb-2">
+                    <label for="title" class="form-label"></label>
+                    <input name="listing[country]" value="<%=listing.country%>" type="text" class="form-control" required>
+                </div>
+                <br>
+                <button
+                    style="margin-bottom: 10px;  color: white; border-radius: 10px; height: 34px; width: 70px; background-color: rgb(40, 156, 156);">Edit</button>
+            </form>
+           </div>
+        </div>
+    </body>
