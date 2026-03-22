@@ -15,7 +15,7 @@ module.exports.signUp = async (req, res, next) => {
         req.login(registeredUser, (err) => {
             if (err) return next(err);
 
-            req.flash("success", "Welcome to WanderLust! You are Logged In");
+            req.flash("success", "Welcome to Rentify! You are Logged In");
             res.redirect("/listings");
         });
 
@@ -28,7 +28,7 @@ module.exports.renderLoginForm = (req, res) => {
     res.render("users/login.ejs")
 }
 module.exports.login = (async (req, res) => {
-    req.flash("success", "Welcome to wanderLust!:You are LoggedIn")
+    req.flash("success", "Welcome to Rentify!:You are LoggedIn")
     let redirectUrl = res.locals.redirectUrl || "/listings"
     res.redirect(redirectUrl)
 })
