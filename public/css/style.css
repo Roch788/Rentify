@@ -1,6 +1,12 @@
 body {
   font-family: "Plus Jakarta Sans", sans-serif !important;
 }
+
+main.container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .navbar {
   height: 5rem;
   background: rgba(255, 255, 255, 0.6);
@@ -59,6 +65,7 @@ footer {
 .card-img-top {
   border-radius: 1rem !important;
   width: 100% !important;
+  height: 16rem;
   object-fit: cover !important;
 }
 .card-body {
@@ -96,6 +103,7 @@ footer {
 /* show page */
 .show-img {
   height: 30vh;
+  min-height: 220px;
 }
 
 /* reviews */
@@ -105,4 +113,26 @@ footer {
 }
 .submit_Review:hover{
   background-color: rgb(9, 96, 235) !important;
+}
+
+@media (max-width: 767.98px) {
+  .navbar {
+    height: auto;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .card-img-top {
+    height: 13rem;
+  }
+
+  .show-img {
+    height: 38vh;
+    min-height: 180px;
+  }
+
+  .f-info-links a {
+    display: inline-block;
+    margin: 0.25rem 0.35rem;
+  }
 }

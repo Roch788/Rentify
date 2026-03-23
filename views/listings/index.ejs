@@ -4,6 +4,10 @@
             display: flex;
             margin-top: 2rem;   
             gap: 2rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 0.8rem;
+            -webkit-overflow-scrolling: touch;
         }
 
         .filter {
@@ -29,7 +33,21 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-left: 5rem;
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 767.98px) {
+            #filters {
+                gap: 1.2rem;
+                margin-top: 1.2rem;
+            }
+
+            .toggle-switch {
+                min-width: max-content;
+                height: auto;
+                padding: 0.7rem;
+            }
         }
     </style>
 
@@ -111,7 +129,7 @@
                             <div class="card listing-card h-100 shadow-sm">
 
                                 <img src="<%= listing.image && listing.image.url ? listing.image.url : 'https://images.unsplash.com/photo-1506744038136-46273834b3fb' %>"
-                                    class="card-img-top" alt="listing_image" style="height:20rem">
+                                    class="card-img-top" alt="listing_image">
 
                                 <div class="card-img-overlay"></div>
 

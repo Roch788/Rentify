@@ -24,9 +24,8 @@ const dbUrl = process.env.ATLASDB_URL;
 main().then(() => {
     console.log("Connected to Db")
 }).catch(err => {
-    console.log("error aagya");
+    console.log("❌ DB ERROR:", err);
 })
-
 async function main() {
     await mongoose.connect(dbUrl);
 }
