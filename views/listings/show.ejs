@@ -10,7 +10,7 @@
             <div class="card-body">
                 <p class="card-text">
                     <i>
-                        <h4>Owned by : <%=listing.owner.username%>
+                        <h4>Owned by : <%= (listing.owner && listing.owner.username) ? listing.owner.username : "Anonymous" %>
                         </h4>
                     </i>
                     <li>
@@ -27,7 +27,7 @@
                     </li>
                 </p>
 
-                <%if(locals.currUser && listing.owner._id.equals(locals.currUser._id)){%>
+                <%if(currUser && listing.owner && listing.owner._id.equals(currUser._id)){%>
                     <div style="display: flex; justify-content: center; gap: 10px; align-items: center;">
                         <a href="/listings/<%= listing._id %>/edit" class="mt-3"
                             style="border-color: white; border: none; text-decoration: none; border-radius: 5px; ; color: black; background-color: green; padding: 2.1px;">
@@ -46,7 +46,7 @@
         </div>
         <!-- this one is for review -->
         <div class="col-12 col-lg-8 offset-lg-2">
-            <%if(locals.currUser){%>
+            <%if(currUser){%>
                 <h4>Leave a review</h4>
                 <form action="/listings/<%= listing._id %>/reviews" method="post" novalidate class="needs-validation">
                     <div class="mt-3">
@@ -90,7 +90,7 @@
                                 <div class="card reviewCard col-12 col-md-6 mb-3">
                                     <div class="card-body">
                                         <h5 class="card-title">
-                                            @<%=review.author.username %>
+                                            @<%= (review.author && review.author.username) ? review.author.username : "Anonymous" %>
                                         </h5>
                                         <p class="starability-result card-text" data-rating="<%=review.rating%>">
                                         </p>

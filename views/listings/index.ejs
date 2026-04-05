@@ -2,7 +2,7 @@
     <style>
         #filters {
             display: flex;
-            margin-top: 2rem;   
+            margin-top: 2rem;
             gap: 2rem;
             overflow-x: auto;
             white-space: nowrap;
@@ -10,24 +10,31 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        .filter {
-            text-align: center;
-            opacity: 0.7;
-            font-size: 0.9rem;
-            
+        #filters {
+            .filter {
+                text-decoration: none;
+                color: inherit;
+            }
+
         }
 
-        .filter:hover {
+        .filter.active {
+            opacity: 1;
+            border-bottom: 2px solid black;
+        }
+
+        #filters:hover {
             opacity: 1;
             cursor: pointer;
         }
 
-        .tax-info{
+        .tax-info {
             display: none;
         }
-        .toggle-switch{
+
+        .toggle-switch {
             border: 1px solid black;
-            border-radius:1rem;
+            border-radius: 1rem;
             height: 3rem;
             padding: 1rem;
             display: flex;
@@ -57,63 +64,76 @@
         <button>Create New Listing</button>
     </form> -->
         <div id="filters">
-            <div class="filter">
-                <div> <i class="fa-solid fa-fire"></i>
-                </div>
+
+            <!-- All -->
+            <a href="/listings" class="filter <%= !selectedCategory ? 'active' : '' %>">
+                <div><i class="fa-solid fa-border-all"></i></div>
+                <p>All</p>
+            </a>
+
+            <!-- Trending -->
+            <a href="/listings?category=trending" class="filter <%= selectedCategory === 'trending' ? 'active' : '' %>">
+                <div><i class="fa-solid fa-fire"></i></div>
                 <p>Trending</p>
-            </div>
-            <div class="filter">
-                <div> <i class="fa-solid fa-bed"></i>
-                </div>
+            </a>
+
+            <!-- Rooms -->
+            <a href="/listings?category=rooms" class="filter <%= selectedCategory === 'rooms' ? 'active' : '' %>">
+                <div><i class="fa-solid fa-bed"></i></div>
                 <p>Rooms</p>
-            </div>
-            <div class="filter">
-                <div> <i class="fa-solid fa-mountain-city"></i>
-                </div>
+            </a>
+
+            <!-- Iconic Cities -->
+            <a href="/listings?category=iconic_city"
+                class="filter <%= selectedCategory === 'iconic_city' ? 'active' : '' %>">
+                <div><i class="fa-solid fa-mountain-city"></i></div>
                 <p>Iconic Cities</p>
-            </div>
-            <div class="filter">
-                <div> <i class="fa-solid fa-mountain"></i>
-                </div>
+            </a>
+
+            <!-- Mountains -->
+            <a href="/listings?category=mountains"
+                class="filter <%= selectedCategory === 'mountains' ? 'active' : '' %>">
+                <div><i class="fa-solid fa-mountain"></i></div>
                 <p>Mountains</p>
-            </div>
+            </a>
 
-            <div class="filter">
-                <div> <i class="fa-solid fa-dungeon"></i>
-                </div>
+            <!-- Castles -->
+            <a href="/listings?category=castles" class="filter <%= selectedCategory === 'castles' ? 'active' : '' %>">
+                <div><i class="fa-solid fa-dungeon"></i></div>
                 <p>Castles</p>
-            </div>
+            </a>
 
-            <div class="filter">
-                <div>
-                    <i class="fa-solid fa-person-swimming"></i>
-                </div>
+            <!-- Pools -->
+            <a href="/listings?category=pools" class="filter <%= selectedCategory === 'pools' ? 'active' : '' %>">
+                <div><i class="fa-solid fa-person-swimming"></i></div>
                 <p>Pools</p>
-            </div>
-            <div class="filter">
-                <div>
-                    <i class="fa-solid fa-building-wheat"></i>
-                </div>
+            </a>
+
+            <!-- Farms -->
+            <a href="/listings?category=farms" class="filter <%= selectedCategory === 'farms' ? 'active' : '' %>">
+                <div><i class="fa-solid fa-building-wheat"></i></div>
                 <p>Farms</p>
-            </div>
-            <div class="filter">
-                <div>
-                    <i class="fa-solid fa-tent"></i>
-                </div>
+            </a>
+
+            <!-- Camping -->
+            <a href="/listings?category=camping" class="filter <%= selectedCategory === 'camping' ? 'active' : '' %>">
+                <div><i class="fa-solid fa-tent"></i></div>
                 <p>Camping</p>
-            </div>
-            <div class="filter">
-                <div>
-                    <i class="fa-solid fa-snowflake"></i>
-                </div>
+            </a>
+
+            <!-- Arctic -->
+            <a href="/listings?category=arctic" class="filter <%= selectedCategory === 'arctic' ? 'active' : '' %>">
+                <div><i class="fa-solid fa-snowflake"></i></div>
                 <p>Arctic</p>
+            </a>
+
+        </div>
+        <div class="toggle-switch">
+            <div class="form-check form-switch form-check-reverse">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
             </div>
-            <div class="toggle-switch">
-                <div class="form-check form-switch form-check-reverse">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
-                </div>
-            </div>
+        </div>
         </div>
         </div>
 
@@ -141,7 +161,7 @@
                                         </strong>
                                         <br>
                                         &#8377;<%= (listing.price || 0).toLocaleString("en-IN") %> / night
-                                        <i class="tax-info">&nbsp;+18%gst</i>
+                                            <i class="tax-info">&nbsp;+18%gst</i>
 
                                     </p>
 
@@ -158,20 +178,19 @@
             </div>
         </div>
 
-<script>
-    let taxSwitch=document.getElementById("flexSwitchCheckDefault");
-    taxSwitch.addEventListener("click",()=>{
-        let taxinfo=document.getElementsByClassName("tax-info")
-        for(info of taxinfo){
-            if(info.style.display!="inline"){
-                info.style.display="inline";
-            }
-            else{
-                info.style.display="none";
-            }
-        }
-    })
-</script>
+        <script>
+            let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+            taxSwitch.addEventListener("click", () => {
+                let taxinfo = document.getElementsByClassName("tax-info")
+                for (info of taxinfo) {
+                    if (info.style.display != "inline") {
+                        info.style.display = "inline";
+                    }
+                    else {
+                        info.style.display = "none";
+                    }
+                }
+            })
+        </script>
 
     </body>
-

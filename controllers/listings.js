@@ -2,8 +2,17 @@ const Listing = require("../models/listing")
 const axios = require("axios");
 
 module.exports.index = async (req, res) => {
-    const allListings = await Listing.find({});
-    res.render("listings/index", { allListings })
+    let { category } = req.query;
+    let filter = {};
+    if (category && category !== "null") {
+        filter.categories = category;
+    }
+    const allListings = await Listing.find(filter);
+    console.log("Category:", req.query.category);
+    res.render("listings/index", {
+        allListings,
+        selectedCategory: category || null
+    });
 }
 
 module.exports.renderNewForm = async (req, res) => {
@@ -65,9 +74,13 @@ module.exports.createListing = async (req, res) => {
     const newListing = new Listing({
         ...req.body.listing,
         lat: lat,
-        lng: lng
-    });
+        lng: lng,
+        categories: req.body.listing.categories || []
 
+    });
+    console.log(req.body);
+    console.log(req.body.listing);
+    console.log(req.body.listing.categories);
     // Image handling
     if (req.file) {
         newListing.image = {
@@ -97,7 +110,11 @@ module.exports.editListing = async (req, res) => {
 }
 module.exports.updateListing = async (req, res) => {
     let { id } = req.params;
-    let listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+    let updateData = {
+        ...req.body.listing,
+        categories: req.body.listing.categories || []
+    };
+    let listing = await Listing.findByIdAndUpdate(id, updateData);
     if (typeof req.file !== "undefined") {
         let url = req.file.path;
         let filename = req.file.filename;
